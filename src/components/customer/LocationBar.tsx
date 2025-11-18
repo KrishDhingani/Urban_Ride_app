@@ -16,7 +16,7 @@ const LocationBar = () => {
     const { disconnect } = useWS();
 
     return (
-        <SafeAreaView style={uiStyles.absoluteTop}>
+        <View style={uiStyles.absoluteTop}>
             
             <View style={uiStyles.container}>
                 <TouchableOpacity style={uiStyles.btn} onPress={() => logout(disconnect)}>
@@ -31,7 +31,7 @@ const LocationBar = () => {
                     </CustomText>
                 </TouchableOpacity>
             </View>
-        </SafeAreaView>
+        </View>
     );
 };
 
