@@ -1,13 +1,18 @@
 import { Colors, screenWidth } from "@/utils/Constants";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 
 export const uiStyles = StyleSheet.create({
     absoluteTop: {
-        zIndex: 1,
         position: "absolute",
-        top: 0
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 999,
+        elevation: 20,
+        paddingTop: Platform.OS === "android" ? 60 : 50,
     },
+
     container: {
         flexDirection: 'row',
         alignItems: "center",

@@ -5,27 +5,28 @@ import { screenHeight } from '@/utils/Constants'
 import { StatusBar } from 'expo-status-bar'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { Platform, View } from 'react-native'
+import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet'
 
-const androidHeights=[screenHeight * 0.12, screenHeight * 0.42];
-const iosHeights=[screenHeight * 0.2, screenHeight * 0.5];
+const androidHeights = [screenHeight * 0.10, screenHeight * 0.80];
+const iosHeights = [screenHeight * 0.12, screenHeight * 0.42];
 
 const CustomerHome = () => {
   const bottomSheetRef = useRef(null);
-  const snapPoints =  useMemo(
+  const snapPoints = useMemo(
     () => (Platform.OS === 'ios' ? iosHeights : androidHeights),
     []
   );
 
-  const [mapHeight,setMapHeight]=useState(snapPoints[0]);
+  const [mapHeight, setMapHeight] = useState(snapPoints[0]);
 
   const handleSheetChanges = useCallback((index: number) => {
     let height = screenHeight * 0.8;
-    if(index==1){
-      height = screenHeight*0.5;
+    if (index == 1) {
+      height = screenHeight * 0.6;
     }
     setMapHeight(height);
   }, []);
-  
+
   return (
     <View style={homeStyles.container}>
       <StatusBar
@@ -33,11 +34,31 @@ const CustomerHome = () => {
         backgroundColor="orange"
         translucent={false}
       />
-      <LocationBar/>
+      <LocationBar />
+      <View style={{ height: mapHeight }}>
+        <DraggableMap height={mapHeight} />
+      </View>
 
-      <DraggableMap height={mapHeight} /> 
+      <BottomSheet
+        ref={bottomSheetRef}
+        index={0}
+        handleIndicatorStyle={{ 
+          backgroundColor:"#ccc",
+        }}
+        enableOverDrag={false}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}
+        style={{zIndex:4}}
+      >
+        <BottomSheetScrollView 
+          contentContainerStyle={homeStyles.scrollContainer}>
+          <View/>
+        </BottomSheetScrollView>
+
+      </BottomSheet>
+
     </View>
- 
+
   )
 }
 
