@@ -24,46 +24,46 @@ const Main = () => {
     SemiBold: require("../assets/fonts/NotoSans-SemiBold.ttf"),
   });
 
-  const {user} = useUserStore()
+  const { user } = useUserStore()
 
-  const[hasNavigated, setHasNavigated] = useState(false)
+  const [hasNavigated, setHasNavigated] = useState(false)
 
-  const tokenCheck = async() => {
-    const access_token=tokenStorage.getString("access_token") as string;
-    const refresh_token=tokenStorage.getString("refresh_token") as string;
-    
-    if(access_token){
-      const decodedAccessToken=jwtDecode<DecodedToken>(access_token);
-      const decodedRefreshToken=jwtDecode<DecodedToken>(refresh_token);
+  const tokenCheck = async () => {
+    const access_token = tokenStorage.getString("access_token") as string;
+    const refresh_token = tokenStorage.getString("refresh_token") as string;
 
-      const currentTime=Date.now()/1000;
+    if (access_token) {
+      const decodedAccessToken = jwtDecode<DecodedToken>(access_token);
+      const decodedRefreshToken = jwtDecode<DecodedToken>(refresh_token);
 
-      if(decodedRefreshToken?.exp < currentTime){
+      const currentTime = Date.now() / 1000;
+
+      if (decodedRefreshToken?.exp < currentTime) {
         logout();
         Alert.alert("Session Expired", "Please log in again.");
-    } 
-
-    if(decodedAccessToken?.exp < currentTime){
-      try {
-        refresh_tokens();
-      } catch (err) {
-        console.log(err);
-        Alert.alert("Refresh Token Error");
       }
-    }
-    
-    if(user){
-      resetAndNavigate("./customer/home");
-    }else{
-      resetAndNavigate("./rider/home");
-    }
 
-    return;
+      if (decodedAccessToken?.exp < currentTime) {
+        try {
+          refresh_tokens();
+        } catch (err) {
+          console.log(err);
+          Alert.alert("Refresh Token Error");
+        }
+      }
+
+      if (user) {
+        resetAndNavigate("./customer/home");
+      } else {
+        resetAndNavigate("./rider/home");
+      }
+
+      return;
     }
 
     resetAndNavigate("/role");
   };
-  
+
   useEffect(() => {
     if (loaded && !hasNavigated) {
       const timeoutId = setTimeout(() => {
@@ -78,10 +78,10 @@ const Main = () => {
     <View style={commonStyles.container}>
       <Image
         source={require("../assets/images/logo_t.png")}
-        style={splashStyles.img}/>
-        <CustomText variant='h5' fontFamily='Medium' style={splashStyles.text}>Made in 🇮🇳</CustomText>
+        style={splashStyles.img} />
+      <CustomText variant='h5' fontFamily='Medium' style={splashStyles.text}>Made in 🇮🇳</CustomText>
     </View>
-  )
-}
+  );
+};
 
-export default Main   
+export default Main;

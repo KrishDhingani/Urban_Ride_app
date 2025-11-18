@@ -54,6 +54,7 @@
       "typedRoutes": true
     },
     "extra": {
+      "EXPO_PUBLIC_MAP_API_KEY": "AIzaSyCIwJHv7S_Wo1GSD1Z_0U4l8TT3Fj4rvtM",
       "router": {},
       "eas": {
         "projectId": "6b739c07-f873-4978-b1d8-9388e67dcf04"
