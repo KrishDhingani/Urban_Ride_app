@@ -9,31 +9,29 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CustomText from '../../components/shared/CustomText';
+import CustomText from '../shared/CustomText';
 
 const LocationBar = () => {
     const { location } = useUserStore();
     const { disconnect } = useWS();
 
     return (
-        <View style={uiStyles.absoluteTop}>
-            <SafeAreaView>
+        <SafeAreaView style={uiStyles.absoluteTop}>
+            
             <View style={uiStyles.container}>
                 <TouchableOpacity style={uiStyles.btn} onPress={() => logout(disconnect)}>
                     <SimpleLineIcons name="logout" size={RFValue(16)} color={Colors.text} />
                 </TouchableOpacity>
                 <TouchableOpacity style={uiStyles.locationBar}
-                    onPress={() => router.navigate('/customer/selectLocations')}>
+                    onPress={() => router.navigate('/customer/selectlocations')}>
                     <View style={uiStyles.dot} />
 
                     <CustomText numberOfLines={1} style={uiStyles.locationText}>
                         {location?.address || "Getting address..."}
                     </CustomText>
                 </TouchableOpacity>
-
             </View>
-            </SafeAreaView>
-        </View>
+        </SafeAreaView>
     );
 };
 

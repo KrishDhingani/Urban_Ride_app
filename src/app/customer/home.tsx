@@ -1,5 +1,5 @@
-import LocationBar from '@/app/customer/LocationBar'
 import DraggableMap from '@/components/customer/DraggableMap'
+import LocationBar from '@/components/customer/LocationBar'
 import { homeStyles } from '@/styles/homeStyles'
 import { screenHeight } from '@/utils/Constants'
 import { StatusBar } from 'expo-status-bar'
