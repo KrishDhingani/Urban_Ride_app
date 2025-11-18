@@ -1,16 +1,16 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
-import React, { FC, memo, useRef, useState } from 'react'
-import { useIsFocused } from '@react-navigation/native'
-import { useUserStore } from '@/store/userStore';
 import { useWS } from '@/service/WSProvider';
-import MapView, { Marker, Region } from 'react-native-maps';
+import { useUserStore } from '@/store/userStore';
+import { mapStyles } from '@/styles/mapStyles';
 import { customMapStyle, indiaIntialRegion } from '@/utils/CustomMap';
 import { reverseGeocode } from '@/utils/mapUtils';
-import haversine from 'haversine-distance';
 import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
-import { mapStyles } from '@/styles/mapStyles';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { useIsFocused } from '@react-navigation/native';
 import * as Location from 'expo-location';
+import haversine from 'haversine-distance';
+import React, { FC, memo, useRef, useState } from 'react';
+import { Image, TouchableOpacity, View } from 'react-native';
+import MapView, { Region } from 'react-native-maps';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const DraggableMap: FC<{ height: number }> = ({ height }) => {
     const isFocused = useIsFocused();
