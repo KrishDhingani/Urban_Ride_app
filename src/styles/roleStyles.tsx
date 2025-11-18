@@ -1,6 +1,7 @@
 import { Colors } from "@/utils/Constants";
 import { StyleSheet } from "react-native";
 
+
 export const roleStyles = StyleSheet.create({
     container: {
         flex: 1,
@@ -11,7 +12,7 @@ export const roleStyles = StyleSheet.create({
         resizeMode: 'contain',
         height: 60,
         marginTop: 120,
-        marginBottom: 40
+        marginBottom: 30,
     },
     card: {
         width: '90%',
@@ -33,7 +34,7 @@ export const roleStyles = StyleSheet.create({
         color: '#333',
     },
     image: {
-        height: 120,
+        height: 190,
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
         width: '100%',
